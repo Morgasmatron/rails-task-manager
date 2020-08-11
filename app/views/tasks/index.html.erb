@@ -2,22 +2,24 @@
 <h1>My tasks</h1>
 
 <div class="container">
-  <ul id="tasks">
-  <% @tasks.each do |task| %>
-    <li>
-      <% if task.completed %>
-        <i class="fa fa-check-square-o"></i>
-      <% else %>
-        <i class="fa fa-square-o"></i>
+  <div class="row justify-content-md-center">
+    <ul id="tasks">
+      <% @tasks.each do |task| %>
+      <li>
+        <% if task.completed %>
+          <i class="fa fa-check-square-o"></i>
+        <% else %>
+          <i class="fa fa-square-o"></i>
+        <% end %>
+        <%= link_to task.title, task_path(task.id) %>
+        ·
+        <%= link_to task_path(task.id), method: :delete, data: { confirm: "Delete #{task.title}?" } do %>
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        <% end %>
+      </li>
       <% end %>
-      <%= link_to task.title, task_path(task.id) %>
-      ·
-      <%= link_to task_path(task.id), method: :delete, data: { confirm: "Delete #{task.title}?" } do %>
-        <i class="fa fa-trash-o" aria-hidden="true"></i>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+    </ul>
+  </div>
 
 <hr>
 
